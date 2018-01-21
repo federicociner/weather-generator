@@ -1,0 +1,2 @@
+location,lat,lng
+"Sydney, Australia",-33.8688197,151.2092955
