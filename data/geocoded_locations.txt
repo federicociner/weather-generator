@@ -1,2 +1,2 @@
 location,lat,lng
-"Sydney, Australia",-33.8688197,151.2092955
+"New York, United States",40.7127753,-74.0059728
