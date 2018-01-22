@@ -1,6 +1,7 @@
 from __future__ import division, absolute_import
 import os
 import datetime as dt
+import time
 
 
 def save_data(df, filename, sep='|'):
@@ -33,3 +34,12 @@ def get_filepath(filename):
 def daterange(start_date, end_date):
     for n in range(int((end_date - start_date).days)):
         yield start_date + dt.timedelta(n)
+
+
+def timeit(func):
+    def wrapper(*arg, **kw):
+        t1 = time.time()
+        res = func(*arg, **kw)
+        t2 = time.time()
+        return (t2 - t1), res, func.__name__
+    return wrapper

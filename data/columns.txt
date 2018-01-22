@@ -1,0 +1,12 @@
+Location
+Latitude
+Longitude
+Date
+Year
+Month
+Day
+Hour
+Condition
+Temperature
+Humidity
+Pressure
