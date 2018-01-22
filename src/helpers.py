@@ -1,5 +1,6 @@
 from __future__ import division, absolute_import
 import os
+import datetime as dt
 
 
 def save_data(df, filename, sep='|'):
@@ -27,3 +28,8 @@ def get_filepath(filename):
     filepath = os.path.join(p, 'data', filename)
 
     return filepath
+
+
+def daterange(start_date, end_date):
+    for n in range(int((end_date - start_date).days)):
+        yield start_date + dt.timedelta(n)

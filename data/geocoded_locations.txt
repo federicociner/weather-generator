@@ -1,2 +1,2 @@
-location,lat,lng
-"New York, United States",40.7127753,-74.0059728
+location,lat,lng
+"New York, United States",40.7127753,-74.0059728
