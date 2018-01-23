@@ -1,12 +1,12 @@
 Location
 Latitude
 Longitude
+Elevation
 Date
 Year
 Month
 Day
-Hour
-Condition
-Temperature
+TemperatureHigh
+TemperatureLow
 Humidity
 Pressure

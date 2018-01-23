@@ -1,7 +1,6 @@
 from __future__ import division, absolute_import
 import os
 import datetime as dt
-import time
 
 
 def save_data(df, filename, sep='|'):
@@ -18,7 +17,7 @@ def save_data(df, filename, sep='|'):
 
 
 def get_filepath(filename):
-    """ Gets absolute path for any file in the "data" directory.
+    """Gets absolute path for any file in the "data" directory.
 
     Args:
         filename (str): Name of input file.
@@ -31,15 +30,15 @@ def get_filepath(filename):
     return filepath
 
 
-def daterange(start_date, end_date):
-    for n in range(int((end_date - start_date).days)):
+def daterange(start_date, end_date, offset=1):
+    """Date range iterator.
+
+    Args:
+        start_date (datetime.datetime): Starting date for range.
+        end_date (datetime.datetime): Ending date for range.
+        offset (datetime.datetime): Step size for iterator (number of days).
+    Returns:
+        Date range generator.
+    """
+    for n in range(1, int((end_date - start_date).days), offset):
         yield start_date + dt.timedelta(n)
-
-
-def timeit(func):
-    def wrapper(*arg, **kw):
-        t1 = time.time()
-        res = func(*arg, **kw)
-        t2 = time.time()
-        return (t2 - t1), res, func.__name__
-    return wrapper
