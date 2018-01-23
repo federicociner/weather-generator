@@ -125,7 +125,7 @@ def aggregate_data(filename):
     Args:
         filename (str): File name of historical weather observations dataset.
     Returns:
-        grouped (pd.DataFrame): Aggregated data set
+        grouped (pandas.DataFrame): Aggregated data set
     """
     path = get_filepath(filename)
     df = pd.read_csv(path, sep='|')
