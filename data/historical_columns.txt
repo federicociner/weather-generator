@@ -2,6 +2,7 @@ Location
 Latitude
 Longitude
 Elevation
+Timezone
 Date
 Year
 Month

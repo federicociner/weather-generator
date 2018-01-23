@@ -20,7 +20,7 @@ def get_geolocation_data(apikey, source, target):
     """
     inputfile = open(get_filepath(source), 'r')
     outputfile = csv.writer(open(get_filepath(target), 'w'))
-    outputfile.writerow(['location', 'lat', 'lng', 'elevation'])  # headers
+    outputfile.writerow(['Location', 'Lat', 'Lng', 'Elevation'])  # headers
 
     for row in inputfile:
         row = row.rstrip()
@@ -83,22 +83,23 @@ def get_weather_data(apikey, locs, cols, start_date, end_date, offset):
     for index, row in locs.iterrows():
         for single_date in daterange(start_date, end_date, offset):
             forecast = forecastio.load_forecast(apikey,
-                                                row['lat'],
-                                                row['lng'],
+                                                row['Lat'],
+                                                row['Lng'],
                                                 time=single_date,
                                                 units='si')
             h = forecast.daily()
+            tz = forecast.json['timezone']
             d = h.data
             for p in d:
                 # get date info
                 utc = p.d['time']
                 dts = dt.datetime.utcfromtimestamp(utc)
                 isodate = dt.datetime.utcfromtimestamp(utc).isoformat()
-                date_info = [isodate, dts.year, dts.month, dts.day]
+                date_info = [tz, isodate, dts.year, dts.month, dts.day]
 
                 # get location info
-                loc, lat, lng = row['location'], row['lat'], row['lng']
-                elevation = row['elevation']
+                loc, lat, lng = row['Location'], row['Lat'], row['Lng']
+                elevation = row['Elevation']
                 loc_info = [loc, lat, lng, elevation]
 
                 # get weather attributes - need to handle possible KeyErrors

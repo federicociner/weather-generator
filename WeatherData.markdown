@@ -1,7 +1,7 @@
 The Weather
 ===========
 
-> _When Alexander saw the breadth of his domain, he wept  
+> _When Alexander saw the breadth of his domain, he wept
 > for there were no more worlds to conquer._
 
 Having conquered the challenge of dispensing little bits of paper with your
@@ -104,8 +104,8 @@ Look forward to talking with you about your code. Good luck!
 \vspace{3em}
 
 
-Engineering  
-Analytics & Information  
+Engineering
+Analytics & Information
 Commonwealth Bank
 
 [chain]: <https://en.wikipedia.org/wiki/Markov_chain>
