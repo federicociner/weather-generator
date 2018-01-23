@@ -1,3 +1,12 @@
 Sydney, Australia
 London, United Kingdom
 Moscow, Russia
+Stockholm, Sweden
+Melbourne, Australia
+Anchorage, United States
+Shanghai, China
+Montreal, Canada
+Paris, France
+Munich, Germany
+Rome, Italy
+Miami, United States

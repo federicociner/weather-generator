@@ -69,6 +69,7 @@ def get_weather_data(apikey, locs, cols, start_date, end_date, offset):
         cols (str): File name contain custom column names.
         start_date (datetime.datetime): Start date for historical data range.
         end_date (datetime.datetime): End date for historical data range.
+        offset (int): Step size for iterator (number of days).
     """
     locs_path = get_filepath(locs)
     locs = pd.read_csv(locs_path)
@@ -118,15 +119,28 @@ def get_weather_data(apikey, locs, cols, start_date, end_date, offset):
 
 
 def aggregate_data(filename):
+    """Aggregates data from historical daily weather observations by location/
+    timezone, year, and month.
+
+    Args:
+        filename (str): File name of historical weather observations dataset.
+    Returns:
+        grouped (pd.DataFrame): Aggregated data set
+    """
     path = get_filepath(filename)
     df = pd.read_csv(path, sep='|')
+
+    # get aggregated statistics for humidity, pressure, and temperature
     stats = {'Humidity': [min, max],
              'Pressure': [min, max],
              'TemperatureHigh': 'mean',
              'TemperatureLow': 'mean'}
 
-    group_cols = ['Location', 'Year', 'Month']
+    # set columns to aggregate data
+    group_cols = ['Location', 'Month', 'Timezone']
     grouped = df.groupby(group_cols, as_index=False).aggregate(stats)
+
+    # reset multi-index to single-column labels and shorten column names
     grouped.columns = [''.join(x) for x in grouped.columns.ravel()]
     grouped.rename(columns={'Pressuremin': 'Pmin',
                             'Pressuremax': 'Pmax',
