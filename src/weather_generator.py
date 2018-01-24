@@ -29,7 +29,7 @@ class WeatherGenerator(object):
         self.start_date = start_date
         self.end_date = end_date
         self.obs = obs
-        self.geodata = pd.read_csv(get_filepath(geodata))
+        self.geodata = pd.read_csv(get_datafile(geodata))
         self.histdata = aggregate_data(histdata)
         self.locations = self.histdata['Location'].unique().tolist()
         self.output = None
@@ -76,7 +76,7 @@ class WeatherGenerator(object):
         # generate random dates and append to a list
         sd = self.start_date
         ed = self.end_date
-        dates = [random_date(start=sd, end=ed) for d in range(0, obs)]
+        dates = [random_date(start=sd, end=ed) for d in range(0, self.obs)]
 
         # convert to ISO 8601 format and update "Local Time" field
         self.output['Local Time'] = map(lambda x: x.isoformat(), dates)
@@ -110,10 +110,15 @@ class WeatherGenerator(object):
 
     def generate_condition_data(self):
         """ Predicts condition ('Sunny', 'Rain', 'Snow') for the next
-        observation period using a simple Markov Chain
+        observation period using a simple Markov Chain model.
 
         """
-        # sort by location and local time and set 'Condition' column to NA
+        # set 'Conditions' column to NA
+        self.output['Conditions'] = 'NA'
 
-    def print_hello(self):
-        print("Hello!")
+        # instantiate new MarkovChain object
+        MC = MarkovChain()
+
+        # apply forecast function on 'Conditions' column based on temperature
+        # and humidity values for each observation period
+        self.output[['Conditions']] = self.output[["Temperature", "Humidity"]].apply(lambda x: MC.forecast_weather(x.values[0], x.values[1]), axis=1)

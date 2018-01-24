@@ -5,7 +5,7 @@ import random
 
 
 def save_data(df, filename, sep='|', subdir='data'):
-    """Saves a Pandas data frame to the 'data' directory within the project.
+    """Saves a Pandas data frame to the a directory within the project.
 
     Args:
         df (pd.DataFrame): Source data frame.
@@ -17,7 +17,7 @@ def save_data(df, filename, sep='|', subdir='data'):
     df.to_csv(path_or_buf=tdir, sep=sep, header=True, index=False)
 
 
-def get_filepath(filename):
+def get_datafile(filename):
     """Gets absolute path for any file in the 'data' directory.
 
     Args:
@@ -56,7 +56,7 @@ def random_date(start=dt.datetime(1900, 1, 1), end=dt.datetime(2017, 12, 31)):
         start (datetime.datetime): Start of date range.
         end (datetime.datetime): End of date range.
     Returns:
-        rdate (datetime.datetime): randomly generated datetime object.
+        Randomly generated datetime object.
 
     """
     delta = end - start

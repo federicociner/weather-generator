@@ -6,7 +6,7 @@ import requests
 import csv
 import json
 import urllib
-# from helpers import *
+from helpers import *
 
 
 def get_geolocation_data(apikey, source, target):
@@ -19,8 +19,8 @@ def get_geolocation_data(apikey, source, target):
         target (str): Destination text file name.
 
     """
-    inputfile = open(get_filepath(source), 'r')
-    outputfile = csv.writer(open(get_filepath(target), 'w'))
+    inputfile = open(get_datafile(source), 'r')
+    outputfile = csv.writer(open(get_datafile(target), 'w'))
     outputfile.writerow(['Location', 'Lat', 'Lng', 'Elevation'])  # headers
 
     for row in inputfile:
@@ -74,11 +74,11 @@ def get_weather_data(apikey, locs, cols, start_date, end_date, offset):
         offset (int): Step size for iterator (number of days).
 
     """
-    locs_path = get_filepath(locs)
+    locs_path = get_datafile(locs)
     locs = pd.read_csv(locs_path)
 
     # get columns list
-    columns = get_filepath(cols)
+    columns = get_datafile(cols)
     with open(columns) as f:
         cols = [line.strip() for line in f]
 
@@ -131,7 +131,7 @@ def aggregate_data(filename):
         grouped (pandas.DataFrame): Aggregated data set
 
     """
-    path = get_filepath(filename)
+    path = get_datafile(filename)
     df = pd.read_csv(path, sep='|')
 
     # get aggregated statistics for humidity, pressure, and temperature
