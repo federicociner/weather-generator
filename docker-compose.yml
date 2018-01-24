@@ -1,0 +1,8 @@
+version: '3'
+services:
+  weather-generator:
+    image: federicociner/weather-generator:latest
+    volumes:
+      - output:/home/weather-generator/output
+volumes:
+  output:
