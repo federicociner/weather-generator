@@ -1,6 +1,7 @@
 from __future__ import division, absolute_import
 import numpy as np
 import pandas as pd
+from markov_chain import *
 from generate_data import *
 from helpers import *
 
@@ -15,10 +16,15 @@ class WeatherGenerator(object):
 
         Args:
             obs (int): Number of random observations to generate.
-            start_date (datetime.datetime): Start date for random
-            date generation
-            end_date (datetime.datetime): End date for random date generation
-            geodata (pandas.DataFrame)
+            start_date (datetime.datetime): Start date for random date
+            generation.
+            end_date (datetime.datetime): End date for random date generation.
+            histdata (pandas.DataFrame): Historical weather data for selected
+            locations aggregated by month and location.
+            geodata (pandas.DataFrame): Data set containing geolocation
+            information, such as latitude, longitude, and elevation in meters
+            above sea level.
+
         """
         self.start_date = start_date
         self.end_date = end_date
@@ -31,6 +37,7 @@ class WeatherGenerator(object):
     def initialize_output(self):
         """Initializes an empty data frame to store randomly generate weather
         observations.
+
         """
         cols = ['Location', 'Position', 'Local Time',
                 'Conditions', 'Temperature', 'Pressure', 'Humidity']
@@ -41,8 +48,8 @@ class WeatherGenerator(object):
         self.output = pd.DataFrame(np.zeros((rows, dims)), columns=cols)
 
     def generate_position_data(self):
-        """Populates the 'Location' and 'Position' attributes of the output data
-        frame.
+        """Populates the 'Location' and 'Position' attributes of the output data frame.
+
         """
         # populate 'Location' field randomly
         self.output['Location'] = np.random.choice(self.locations, self.obs)
@@ -63,7 +70,8 @@ class WeatherGenerator(object):
 
     def generate_time_data(self):
         """Populates the 'Local Time' field sequentially, by location, using
-        a date range from a randomly selected start date
+        a date range from a randomly selected start date.
+
         """
         # generate random dates and append to a list
         sd = self.start_date
@@ -75,7 +83,8 @@ class WeatherGenerator(object):
 
     def generate_weather_data(self):
         """Populates the 'Temperature', 'Humidity', and 'Pressure' attributes
-        using historical values calculated on a monthly level
+        using historical values calculated on a monthly level.
+
         """
         months = pd.to_datetime(self.output['Local Time']).dt.month
         self.output['Month'] = months  # set month values for later joins
@@ -98,3 +107,13 @@ class WeatherGenerator(object):
                  'Hmax', 'Hmin', 'Tmean_high', 'Tmean_low']
         m.drop(columns=dcols, inplace=True)
         self.output = m
+
+    def generate_condition_data(self):
+        """ Predicts condition ('Sunny', 'Rain', 'Snow') for the next
+        observation period using a simple Markov Chain
+
+        """
+        # sort by location and local time and set 'Condition' column to NA
+
+    def print_hello(self):
+        print("Hello!")

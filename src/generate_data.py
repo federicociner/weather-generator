@@ -6,7 +6,7 @@ import requests
 import csv
 import json
 import urllib
-from helpers import *
+# from helpers import *
 
 
 def get_geolocation_data(apikey, source, target):
@@ -17,6 +17,7 @@ def get_geolocation_data(apikey, source, target):
         apikey (str): Google Maps API key.
         source (str): Text file name with locations in (City, Country) format.
         target (str): Destination text file name.
+
     """
     inputfile = open(get_filepath(source), 'r')
     outputfile = csv.writer(open(get_filepath(target), 'w'))
@@ -44,6 +45,7 @@ def get_elevation(apikey, lat, lng):
         apikey (str): Google Maps API key.
         lat (float): Latitude coordinate.
         lng (float): Longitude coordinate.
+
     """
     url = 'https://maps.googleapis.com/maps/api/elevation/json'
     request = urllib.urlopen(url + '?locations=' +
@@ -70,6 +72,7 @@ def get_weather_data(apikey, locs, cols, start_date, end_date, offset):
         start_date (datetime.datetime): Start date for historical data range.
         end_date (datetime.datetime): End date for historical data range.
         offset (int): Step size for iterator (number of days).
+
     """
     locs_path = get_filepath(locs)
     locs = pd.read_csv(locs_path)
@@ -126,6 +129,7 @@ def aggregate_data(filename):
         filename (str): File name of historical weather observations dataset.
     Returns:
         grouped (pandas.DataFrame): Aggregated data set
+
     """
     path = get_filepath(filename)
     df = pd.read_csv(path, sep='|')
@@ -160,11 +164,12 @@ if __name__ == '__main__':
     target = 'geocoded_locations.txt'
 
     # generate geocoded locations file
-    get_geolocation_data(maps_api_key, source, target)
+    # get_geolocation_data(maps_api_key, source, target)
 
     # generate weather data for each location and save as CSV
     start_date = dt.datetime(2017, 1, 1)
     end_date = dt.datetime(2017, 12, 31)
     cols = 'historical_columns.txt'
     offset = 12
-    get_weather_data(ds_api_key, target, cols, start_date, end_date, offset)
+    print("Yay!")
+    # get_weather_data(ds_api_key, target, cols, start_date, end_date, offset)

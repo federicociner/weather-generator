@@ -9,6 +9,7 @@ train:
 
 run:
 	@echo "Running weather data generator"
+	python src/run_simulation.py ${obs}
 
 .PHONY: build train run
 

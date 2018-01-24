@@ -24,6 +24,7 @@ def get_filepath(filename):
         filename (str): Name of input file.
     Returns:
         filepath (str): Full absolute path of input file name.
+
     """
     p = os.path.abspath(os.path.join(os.curdir, os.pardir))
     filepath = os.path.join(p, 'data', filename)
@@ -41,6 +42,7 @@ def daterange(start_date, end_date, offset=1):
     Yields:
         datetime.datetime: The next date in the integer range between
         start_date and end_date, with offset as step size.
+
     """
     for n in range(0, int((end_date - start_date).days), offset):
         yield start_date + dt.timedelta(n)
@@ -55,6 +57,7 @@ def random_date(start=dt.datetime(1900, 1, 1), end=dt.datetime(2017, 12, 31)):
         end (datetime.datetime): End of date range.
     Returns:
         rdate (datetime.datetime): randomly generated datetime object.
+
     """
     delta = end - start
     int_delta = (delta.days * 24 * 60 * 60) + delta.seconds
