@@ -26,15 +26,15 @@ where
 ### Standard
 
 In order to install the required dependencies and libraries to run the weather generator, your system should have the following prerequisites satisfied:
-1. Windows, macOS, and Linux are all supported - however, if you are running Windows you will have to install either Cygwin or WLS (Windows Linux Subsystem) Bash to run the Makefile commands.
+1. Windows, macOS, and Linux are all supported - however, if you are running Windows you will have to install a Linux filesystem (e.g. Cygwin) to run the Makefile commands.
 1. Python 2.7.12 or greater installed with all standard libraries.
 1. Permissions to download and install packages from PyPi via `pip`.
 
-To build the application and download the required Python dependencies, simply clone the repository to your machine/server, `cd` to the project folder (**weather-generator**) and run the `make build` command in Bash. This will download and install all the required dependencies.
+To build the application and download the required Python dependencies, simply clone the repository to your machine/server, `cd` to the project folder **weather-generator** and run the `make build` command in Bash. This will download and install all the required dependencies.
 
 ### Docker
 
-If you have Docker installed on your system and have an account on DockerHub, you can simply download a lightweight image with all of the project dependencies by running `make dockerbuild` in the main project directory.
+If you have Docker installed on your system and have an account on DockerHub, you can pull a pre-built image with all of the project dependencies installed by running `make dockerbuild` in the main project directory.
 
 ## Running a simulation
 

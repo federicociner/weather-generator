@@ -16,14 +16,10 @@ class WeatherGenerator(object):
 
         Args:
             obs (int): Number of random observations to generate.
-            start_date (datetime.datetime): Start date for random date
-            generation.
-            end_date (datetime.datetime): End date for random date generation.
-            histdata (pandas.DataFrame): Historical weather data for selected
-            locations aggregated by month and location.
-            geodata (pandas.DataFrame): Data set containing geolocation
-            information, such as latitude, longitude, and elevation in meters
-            above sea level.
+            start_date (datetime.datetime): Start date for date range,
+            end_date (datetime.datetime): End date for date range.
+            histdata (str): File name for historical weather dataset.
+            geodata (str): File name for geolocation dataset.
 
         """
         self.start_date = start_date
@@ -74,7 +70,7 @@ class WeatherGenerator(object):
             str).apply(lambda x: ','.join(x), axis=1)
         self.geodata.drop(columns=['Lat', 'Lng', 'Elevation'], inplace=True)
 
-        # update "Position" column in output data frame
+        # update 'Position' column in output data frame
         left = self.output.set_index('Location')  # set left index
         right = self.geodata.set_index('Location')  # set right index
         self.output = left.loc[:, left.columns.union(right.columns)]  # union
@@ -82,8 +78,8 @@ class WeatherGenerator(object):
         self.output.reset_index(inplace=True)
 
     def generate_time_data(self):
-        """Populates the 'Local Time' field sequentially, by location, using
-        a date range from a randomly selected start date.
+        """Populates the 'Local Time' field by location, using a date range
+        from a randomly selected start date.
 
         """
         # generate random dates and append to a list
@@ -107,8 +103,8 @@ class WeatherGenerator(object):
         m = pd.merge(self.output, self.histdata, how='left',
                      left_on=keys, right_on=keys)
 
-        # use vectorization to uniformly select random pressure, temperature
-        # and humidity values between the historical min and max ranges
+        # uniformly select random pressure, temperature
+        # and humidity values between the historical max and min ranges
         r = np.random.rand(m.shape[0])
         m['Temperature'] = ((m['Tmean_high'] - m['Tmean_low']
                              ) * r + m['Tmean_low']).round(1)
@@ -122,7 +118,7 @@ class WeatherGenerator(object):
         self.output = m
 
     def generate_condition_data(self):
-        """ Predicts condition ('Sunny', 'Rain', 'Snow') for the next
+        """ Predicts condition ('Sunny', 'Rain', 'Snow') for the current
         observation period using a simple Markov Chain model.
 
         """
