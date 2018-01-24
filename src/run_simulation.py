@@ -26,4 +26,4 @@ if __name__ == '__main__':
     output = weatherGenerator.return_output()
 
     # save data frame to CSV in 'output' directory
-    save_data(output, filename='random_weather.csv', subdir='output')
+    save_data(output, filename='generated_weather_data.csv', subdir='output')

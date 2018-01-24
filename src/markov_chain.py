@@ -34,7 +34,7 @@ class MarkovChain(object):
         """
         return (temp < 0.0) or (temp < 4.0 and humidity < 40)
 
-    def forecast_weather(self, temp=0.0, humidity=50):
+    def forecast_weather(self, temp, humidity):
         """Implements Markov Chain model to forecast the weather condition
         for a given day based on a prior observation period.
 
@@ -49,41 +49,42 @@ class MarkovChain(object):
         # set initial state based on temperature and humidity
         # if temperature and humidity conditions are right, then snow is a
         # possibility
-        cur = None
+        forecast = None
         can_snow = self.snow_possible(temp, humidity)
 
         if can_snow:
-            cur = np.random.choice(self.states)
+            forecast = np.random.choice(self.states)
         else:
-            cur = np.random.choice(filter(lambda x: x != 'Snow', self.states))
+            forecast = np.random.choice(
+                filter(lambda x: x != 'Snow', self.states))
 
         # go through possible states and run Markov Chain model for each
-        if cur == 'Sunny':
+        if forecast == 'Sunny':
             change = np.random.choice(
                 self.transitions[0], replace=True, p=self.transition_probs[0])
             if change == "SuSu":
                 pass
             elif change == "SuRn":
-                cur = "Rain"
+                forecast = "Rain"
             elif change == "SuSn" and can_snow:
-                cur = "Snow"
-        elif cur == 'Rain':
+                forecast = "Snow"
+        elif forecast == 'Rain':
             change = np.random.choice(
                 self.transitions[1], replace=True, p=self.transition_probs[1])
             if change == "RnSu":
-                cur = "Sunny"
+                forecast = "Sunny"
             elif change == "RnRn":
                 pass
             elif change == "RnSn" and can_snow:
-                cur = "Snow"
-        elif cur == 'Snow':
+                forecast = "Snow"
+        elif forecast == 'Snow':
             change = np.random.choice(
                 self.transitions[2], replace=True, p=self.transition_probs[2])
             if change == "SnSu":
-                cur = "Sunny"
+                forecast = "Sunny"
             elif change == "SnRn":
-                cur = "Rain"
+                forecast = "Rain"
             elif change == "SnSn":
                 pass
 
-        return cur
+        return forecast
