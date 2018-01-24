@@ -34,5 +34,9 @@ To build the application and download the required Python dependencies, simply c
 
 ### Docker
 
+If you have Docker installed on your system, you can simply download a lightweight image with all of the project dependencies by running `make dockerbuild` in the main project directory.
+
 ## Running a simulation
+
+### Docker
 
