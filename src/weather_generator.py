@@ -33,19 +33,32 @@ class WeatherGenerator(object):
         self.histdata = aggregate_data(histdata)
         self.locations = self.histdata['Location'].unique().tolist()
         self.output = None
+        self.cols = ['Location', 'Position', 'Local Time',
+                     'Conditions', 'Temperature', 'Pressure', 'Humidity']
+
+    def return_output(self):
+        """Returns a copy of the output data frame.
+
+        Returns:
+            self.output (pandas.DataFrame): Generated weather observations.
+        """
+        return self.output
+
+    def order_output(self):
+        """Orders the output data frame in the correct format.
+
+        """
+        self.output = self.output[self.cols]
 
     def initialize_output(self):
         """Initializes an empty data frame to store randomly generate weather
         observations.
 
         """
-        cols = ['Location', 'Position', 'Local Time',
-                'Conditions', 'Temperature', 'Pressure', 'Humidity']
-
         # set dims and store as 'output' class variable
         rows = self.obs
-        dims = len(cols)
-        self.output = pd.DataFrame(np.zeros((rows, dims)), columns=cols)
+        dims = len(self.cols)
+        self.output = pd.DataFrame(np.zeros((rows, dims)), columns=self.cols)
 
     def generate_position_data(self):
         """Populates the 'Location' and 'Position' attributes of the output data frame.
@@ -121,4 +134,6 @@ class WeatherGenerator(object):
 
         # apply forecast function on 'Conditions' column based on temperature
         # and humidity values for each observation period
-        self.output[['Conditions']] = self.output[["Temperature", "Humidity"]].apply(lambda x: MC.forecast_weather(x.values[0], x.values[1]), axis=1)
+        params = self.output[["Temperature", "Humidity"]]
+        self.output[['Conditions']] = params.apply(
+            lambda x: MC.forecast_weather(x.values[0], x.values[1]), axis=1)

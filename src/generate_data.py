@@ -154,22 +154,3 @@ def aggregate_data(filename):
                             'Humiditymax': 'Hmax'}, inplace=True)
 
     return grouped
-
-
-if __name__ == '__main__':
-    # set variables
-    ds_api_key = '63ab81b2d8aee963f8e0c22cd4ec4650'
-    maps_api_key = 'AIzaSyDDNWV2QqV_SdygOs3A7ucVs-LNaL-PiUI'
-    source = 'locations.txt'
-    target = 'geocoded_locations.txt'
-
-    # generate geocoded locations file
-    # get_geolocation_data(maps_api_key, source, target)
-
-    # generate weather data for each location and save as CSV
-    start_date = dt.datetime(2017, 1, 1)
-    end_date = dt.datetime(2017, 12, 31)
-    cols = 'historical_columns.txt'
-    offset = 12
-    print("Yay!")
-    # get_weather_data(ds_api_key, target, cols, start_date, end_date, offset)

@@ -2,7 +2,7 @@
 
 ## Description
 
-A random weather data generator written in Python. This program uses the Google Maps API to obtain geopositioning and elevation data for a customised list of locations, as well as the Dark Sky API to obtain historical weather measurements for those locations (e.g. max/min temperature, humidity, pressure). Using these datasets, the generator will create realistic aritifical weather observations in a standard format, and output those observations in a in comma-separated values (CSV) file. The data will be output in the following format:
+A random weather data generator written in Python. This program uses the Google Maps API to obtain geopositioning and elevation data for a customised list of locations, as well as the Dark Sky API to obtain historical weather measurements for those locations (e.g. max/min temperature, humidity, pressure). Using these datasets, the generator will create realistic aritifical weather observations in a standard format, and output those observations in a comma-separated values (CSV) file. The data will be output in the following format:
 
 Location  | Position         | Local Time          | Conditions | Temperature | Pressure | Humidity
 --------- | ---------------- | ------------------- | ---------- | -----------:| --------:| --------:
@@ -22,6 +22,17 @@ where
  - Relative humidity is a %
 
 ## Build instructions
+
+### Standard
+
+In order to install the required dependencies and libraries to run the weather generator, your system should have the following prerequisites satisfied:
+1. Windows, macOS, and Linux are all supported - however, if you are running Windows you will have to install either Cygwin or WLS (Windows Linux Subsystem) Bash to run the make commands
+1. Python 2.7.12 or greater installed with all standard libraries.
+1. Permissions to download and install packages from PyPi via `pip`.
+
+To build the application and download the required Python dependencies, simply clone the repository to your machine/server, `cd` to the project folder (**weather-generator**) and run the `make build` command in Bash. This will download and install all the required dependencies.
+
+### Docker
 
 ## Running a simulation
 

@@ -6,8 +6,8 @@ from weather_generator import *
 
 if __name__ == '__main__':
     # set variables"
-    start_date = dt.datetime(2012, 1, 1)
-    end_date = dt.datetime(2015, 12, 31)
+    start_date = dt.datetime(1990, 1, 1)
+    end_date = dt.datetime(2017, 12, 31)
     histdata = 'historical_data.csv'
     geodata = 'geocoded_locations.txt'
     obs = int(sys.argv[1])
@@ -16,6 +16,14 @@ if __name__ == '__main__':
     weatherGenerator = WeatherGenerator(
         obs, start_date, end_date, histdata, geodata)
 
-    print("This is the script name: ", sys.argv[0])
-    print("This is the number of observations: ", weatherGenerator.obs)
-    print(weatherGenerator.geodata)
+    # generate random weather observations
+    weatherGenerator.initialize_output()
+    weatherGenerator.generate_position_data()
+    weatherGenerator.generate_time_data()
+    weatherGenerator.generate_weather_data()
+    weatherGenerator.generate_condition_data()
+    weatherGenerator.order_output()
+    output = weatherGenerator.return_output()
+
+    # save data frame to CSV in 'output' directory
+    save_data(output, filename='random_weather.csv', subdir='output')
