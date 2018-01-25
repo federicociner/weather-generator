@@ -30,7 +30,9 @@ In order to install the required dependencies and libraries to run the weather g
 1. Python 2.7.12 or greater installed with all standard libraries.
 1. Permissions to download and install packages from PyPi via `pip`.
 
-To build the application and download the required Python dependencies, simply clone the repository to your machine/server, `cd` to the project folder **weather-generator** and run the `make build` command in Bash. This will download and install all the required dependencies.
+To build the application and download the required Python dependencies, follow the steps below:
+1. Clone the repository to your machine/server.
+2. `cd` to the project folder **weather-generator** and execture the `make build` command. This will download and install all the required dependencies.
 
 ### Docker
 
@@ -38,10 +40,16 @@ If you have Docker installed on your system and have an account on DockerHub, yo
 
 ## Running a simulation
 
-In order to generate a set of random weather observations, execute `make run obs=<obs>` in the main project directory, where the `<obs>` argument is the number of data points you would like to generate in the dataset (e.g. `make run obs=1000`).
+### Local
 
-After running this command, a CSV file named _generated_weather_data.csv_, containing the randomly generated weather observations, will be written to the _output_ folder. **Note:** Any existing datasets in this folder will be overwritten via the make run command.
+In order to generate a set of random weather observations, follow the steps below:
+1. Execute `make run obs=<obs>` in the main project directory, where the `<obs>` argument is the number of data points you would like to generate in the dataset (e.g. `make run obs=1000`).
+2. After running this command, a CSV file named _generated_weather_data.csv_, containing the randomly generated weather observations, will be written to the _output_ folder.
+
+**Note:** Any existing datasets in this folder will be overwritten via the make run command.
 
 ### Docker
 
-To run an instance of the weather-generator Docker image, execute `make rundocker` in the project directory - this will initiate a Bash session inside the container. From here, you can simply navigate to the project folder via `cd /home/weather-generator` and then execute `make run obs=<obs>` as above, with the same outputs executed inside of the container filesystem.
+To generate weather observations using Docker, follow the steps below:
+1. Execute `make rundocker obs:<obs>` in the project directory - this command is similar to the local run command above, where `<obs>` is the number of observations.
+2. The Docker container will write the CSV of weather observations to the _output_ folder.

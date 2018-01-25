@@ -1,8 +1,10 @@
 version: '3'
 services:
-  weather-generator:
+  simulator:
     image: federicociner/weather-generator:latest
     volumes:
-      - output:/home/weather-generator/output
+      - ./output:/home/weather-generator/output
+    entrypoint: ["/bin/bash", "/home/weather-generator/run.sh", "${obs}"]
+
 volumes:
   output:
