@@ -30,7 +30,8 @@ In order to install the required dependencies and libraries to run the weather g
 
 To build the application and download the required Python dependencies, follow the steps below:
 1. Clone the repository to your machine/server.
-2. `cd` to the project folder **weather-generator** and execture the `make build` command. This will download and install all the required dependencies.
+2. `cd` to the project folder **weather-generator** and execute the `make build` command. This will download and install all the required dependencies.
+1. If you are using Windows and do not have Cygwin, run `pip install -r requirements.txt` in the project folder to install the required Python packages.
 
 ## Running a simulation
 
