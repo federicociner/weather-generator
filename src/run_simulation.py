@@ -15,8 +15,7 @@ if __name__ == '__main__':
 
     # throw error if number of obs is 0 or less
     if obs < 1:
-        raise ValueError(
-            'Number of observations cannot be less than 1 - please try again')
+        raise ValueError('Number of observations cannot be less than 1')
 
     # instantiate new WeatherGenerator object
     weatherGenerator = WeatherGenerator(

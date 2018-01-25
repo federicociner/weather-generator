@@ -1,7 +1,9 @@
 version: '3'
 services:
   simulator:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ./output:/home/weather-generator/output
     entrypoint: ["/bin/bash", "/home/weather-generator/run.sh", "${obs}"]
