@@ -12,6 +12,11 @@ if __name__ == '__main__':
     geodata = 'geocoded_locations.txt'
     obs = int(sys.argv[1])
 
+    # throw error if number of obs is 0 or less
+    if obs < 1:
+        raise ValueError(
+            'Number of observations cannot be less than 1 - please try again')
+
     # instantiate new WeatherGenerator object
     weatherGenerator = WeatherGenerator(
         obs, start_date, end_date, histdata, geodata)

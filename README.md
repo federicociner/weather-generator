@@ -36,7 +36,11 @@ To build the application and download the required Python dependencies, follow t
 
 ### Docker
 
-If you have Docker installed on your system and have an account on DockerHub, you can pull a pre-built image with all of the project dependencies installed by running `make dockerbuild` in the main project directory.
+If you have Docker installed on your system and have an account on DockerHub, you have two options:
+1. Pull a pre-built image with all of the project dependencies installed by running `make dockerpull`.
+2. Build an image locally by running `make dockerbuild`.
+
+If you are using macOS, you must configure Docker to allow the directory in which the project folder is in to be bind mounted into Docker containers. You can set this through the "File Sharing" pane in the Docker for Mac settings.
 
 ## Running a simulation
 
@@ -51,5 +55,9 @@ In order to generate a set of random weather observations, follow the steps belo
 ### Docker
 
 To generate weather observations using Docker, follow the steps below:
-1. Execute `make rundocker obs:<obs>` in the project directory - this command is similar to the local run command above, where `<obs>` is the number of observations.
+1. Execute `make rundocker obs=<obs>` in the project directory - this command is similar to the local run command above, where `<obs>` is the number of observations.
 2. The Docker container will write the CSV of weather observations to the _output_ folder.
+
+
+
+
