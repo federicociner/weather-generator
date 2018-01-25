@@ -23,12 +23,12 @@ class MarkovChain(object):
                                  [0.7, 0.1, 0.2]]
 
     def snow_possible(self, temp, humidity):
-        """Checks temperature and humidity conditions to determine whether
-        'Snow' is a possible condition
+        """Checks current temperature and humidity conditions to determine
+        whether 'Snow' is a possible condition.
 
         Args:
-            temp (float): Temperature for the previous period.
-            humidity (int): Relative humidity for the previous period.
+            temp (float): Temperature for the current period.
+            humidity (int): Relative humidity for the current period.
         Returns
             Boolean value indicating whether 'Snow' is possible or not
         """
