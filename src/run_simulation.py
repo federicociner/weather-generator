@@ -1,7 +1,8 @@
-from __future__ import division, absolute_import
+from __future__ import division
 import sys
 import datetime as dt
-from weather_generator import *
+from weather_generator import WeatherGenerator
+from helpers import save_data
 
 
 if __name__ == '__main__':

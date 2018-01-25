@@ -1,4 +1,4 @@
-from __future__ import division, absolute_import
+from __future__ import division
 import os
 import datetime as dt
 import random
