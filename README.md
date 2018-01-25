@@ -23,8 +23,6 @@ where
 
 ## Build instructions
 
-### Standard
-
 In order to install the required dependencies and libraries to run the weather generator, your system should have the following prerequisites satisfied:
 1. Windows, macOS, and Linux are all supported - however, if you are running Windows you will have to install a Linux filesystem (e.g. Cygwin) to run the Makefile commands.
 1. Python 2.7.12 or greater installed with all standard libraries.
@@ -34,17 +32,7 @@ To build the application and download the required Python dependencies, follow t
 1. Clone the repository to your machine/server.
 2. `cd` to the project folder **weather-generator** and execture the `make build` command. This will download and install all the required dependencies.
 
-### Docker
-
-If you have Docker installed on your system and have an account on DockerHub, you have two options:
-1. Pull a pre-built image with all of the project dependencies installed by running `make dockerpull`.
-2. Build an image locally by running `make dockerbuild`.
-
-If you are using macOS, you must configure Docker to allow the directory in which the project folder is in to be bind mounted into Docker containers. You can set this through the "File Sharing" pane in the Docker for Mac settings.
-
 ## Running a simulation
-
-### Local
 
 In order to generate a set of random weather observations, follow the steps below:
 1. Execute `make run obs=<obs>` in the main project directory, where the `<obs>` argument is the number of data points you would like to generate in the dataset (e.g. `make run obs=1000`).
@@ -52,11 +40,14 @@ In order to generate a set of random weather observations, follow the steps belo
 
 **Note:** Any existing datasets in this folder will be overwritten via the make run command.
 
-### Docker
+## Build and run using Docker
 
-To generate weather observations using Docker, follow the steps below:
-1. Execute `make rundocker obs=<obs>` in the project directory - this command is similar to the local run command above, where `<obs>` is the number of observations.
-2. The Docker container will write the CSV of weather observations to the _output_ folder.
+If you have Docker installed, you can build and run a Docker image using docker-compose to generate your random weather observations. To generate a dataset using Docker, follow the steps below:
+1. Execute `make rundocker obs=<obs>` in the project directory. This command will build a local Docker image with the project dependencies, run the container and pass the `<obs>` variable to the container as the number of observations to generate.
+2. As with running the simulation on your local machine, the Docker container will write the output CSV with the random weather observations to the _output_ folder.
+
+**Note**: If you are using macOS, you must configure Docker to allow the directory in which the project folder is in to be bind mounted into Docker containers. You can set this through the "File Sharing" pane in the Docker for Mac settings. For example, if you cloned the repo into the `/Users/Projects` directory, then you could add `/Users` or `/Users/Projects` as mount points.
+
 
 
 
