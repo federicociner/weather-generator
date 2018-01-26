@@ -3,6 +3,7 @@ import sys
 import datetime as dt
 from weather_generator import WeatherGenerator
 from helpers import save_data
+import timeit
 
 
 if __name__ == '__main__':
@@ -21,6 +22,9 @@ if __name__ == '__main__':
     weatherGenerator = WeatherGenerator(
         obs, start_date, end_date, histdata, geodata)
 
+    # start timing
+    start_time = timeit.default_timer()
+
     # generate random weather observations
     weatherGenerator.initialize_output()
     weatherGenerator.generate_position_data()
@@ -32,3 +36,8 @@ if __name__ == '__main__':
 
     # save data frame to CSV in 'output' directory
     save_data(output, filename='generated_weather_data.csv', subdir='output')
+
+    # stop timing and print elapsed time
+    elapsed = str("{:.4f}".format(timeit.default_timer() - start_time))
+    print('Generated ' + str(obs) +
+          ' random weather observations in ' + elapsed + ' seconds')
