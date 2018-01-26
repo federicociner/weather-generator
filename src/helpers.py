@@ -8,7 +8,7 @@ def save_data(df, filename, sep='|', subdir='data'):
     """Saves a Pandas data frame to the a directory within the project.
 
     Args:
-        df (pd.DataFrame): Source data frame.
+        df (pandas.DataFrame): Source data frame.
         filename (str): Target file name.
         sep (str): Column-delimiter to use.
 
@@ -33,12 +33,12 @@ def get_datafile(filename):
 
 
 def daterange(start_date, end_date, offset=1):
-    """Date range iterator.
+    """Date range generator.
 
     Args:
         start_date (datetime.datetime): Starting date for range.
         end_date (datetime.datetime): Ending date for range.
-        offset (int): Step size for iterator (number of days).
+        offset (int): Step size for generator (number of days).
     Yields:
         datetime.datetime: The next date in the integer range between
         start_date and end_date, with offset as step size.

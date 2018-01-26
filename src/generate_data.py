@@ -122,8 +122,8 @@ def get_weather_data(apikey, locs, cols, start_date, end_date, offset):
 
 
 def aggregate_data(filename):
-    """Aggregates data from historical daily weather observations by location/
-    timezone, year, and month.
+    """Aggregates data from historical daily weather observations by location,
+    timezone, and month.
 
     Args:
         filename (str): File name of historical weather observations dataset.
