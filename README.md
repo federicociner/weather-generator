@@ -2,7 +2,7 @@
 
 ## Description
 
-A random weather data generator written in Python. This program uses the Google Maps API to obtain geopositioning and elevation data for a customised list of locations, as well as the Dark Sky API to obtain historical weather measurements for those locations (e.g. max/min temperature, humidity, pressure). Using these datasets, the generator will create realistic aritifical weather observations in a standard format, and output those observations in a comma-separated values (CSV) file. The data will be output in the following format:
+A random weather data generator written in Python. This program uses the Google Maps API to obtain geopositioning and elevation data for a customised list of locations, as well as the Dark Sky API to obtain historical weather measurements for those locations (e.g. max/min temperature, humidity, pressure). Using these datasets, the generator will create realistic aritifical weather observations in a standard format, and output those observations in a pipe-delimited .csv file. The data will be output in the following format:
 
 Location  | Position         | Local Time          | Conditions | Temperature | Pressure | Humidity
 --------- | ---------------- | ------------------- | ---------- | -----------:| --------:| --------:
